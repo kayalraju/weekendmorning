@@ -18,19 +18,24 @@
         <table class="table">
             <thead>
               <tr>
+                <th scope="col">sl no</th>
                 <th scope="col">#</th>
                 <th scope="col">name</th>
                 <th scope="col">email</th>
                 <th scope="col">city</th>
+                <th colspan="2">action</th>
               </tr>
             </thead>
             <tbody>
                 <% for(let user of data) {%>
               <tr>
                 <th scope="row">1</th>
+                <th scope="row"><%= user._id%></th>
                 <td><%= user.name%></td>
-                <td>email</td>
-                <td>city</td>
+                <td><%= user.email%></td>
+                <td><%= user.city%></td>
+                <td><a href="" class="btn btn-success">edit</a></td>
+                <td><a href="" class="btn btn-danger">delete</a></td>
               </tr>
               <%}%>
               
