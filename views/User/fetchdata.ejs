@@ -27,17 +27,17 @@
               </tr>
             </thead>
             <tbody>
-                <% for(let user of data) {%>
+                <% for(let user of data) { if(user.status!=0){%>
               <tr>
                 <th scope="row">1</th>
                 <th scope="row"><%= user._id%></th>
                 <td><%= user.name%></td>
                 <td><%= user.email%></td>
                 <td><%= user.city%></td>
-                <td><a href="" class="btn btn-success">edit</a></td>
-                <td><a href="" class="btn btn-danger">delete</a></td>
+                <td><a href="/edit/<%= user._id%>" class="btn btn-success">edit</a></td>
+                <td><a href="/softdel/<%= user._id%>" class="btn btn-danger">delete</a></td>
               </tr>
-              <%}%>
+              <%}}%>
               
             </tbody>
           </table>

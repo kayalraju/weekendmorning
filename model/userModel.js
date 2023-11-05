@@ -13,6 +13,10 @@ const UserSchema=new Schema({
     city:{
         type:String,
         required:true
+    },
+    status:{
+        type:Number,
+        default:1
     }
 })
 const UserModel=new mongoose.model('user',UserSchema)
