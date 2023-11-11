@@ -10,7 +10,9 @@ app.set("view engine", 'ejs')
 app.set('views','views')
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
+app.use('/uploads',express.static('uploads'))
 app.use(express.static(path.join(__dirname,'public')))
+
 // const UserRouter=require('./router/userRoute')
 // app.use(UserRouter)
 //Api Route

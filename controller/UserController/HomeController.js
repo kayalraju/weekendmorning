@@ -1,4 +1,5 @@
 const User=require('../../model/userModel')
+const path=require('path')
 
 //****get User */
 const fetchdata=async(req,res)=>{
@@ -28,6 +29,11 @@ const creatreUser=async(req,res)=>{
             email:req.body.email,
             city:req.body.city,
         })
+        //console.log(req.file);
+        if(req.file){
+            Udata.photo=req.file.path
+           }
+           
         const data=await Udata.save()
         console.log(data);
         if(data){
