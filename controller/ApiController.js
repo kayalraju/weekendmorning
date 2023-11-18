@@ -1,4 +1,7 @@
 const User=require('../model/userModel')
+const Product=require('../model/productModel')
+const path=require('path')
+const slugify=require('slugify')
 
 //create user
 const UserController=async(req,res)=>{
@@ -106,10 +109,65 @@ const destroy=async(req,res)=>{
     }
 
 }
+
+
+//for product section
+const createProduct=async(req,res)=>{
+    try{
+
+        const files=req.files
+        let imagepath=[];
+        const basepath=`${req.protocol}://${req.get('host')}/productimage/`;
+        if(files){
+            files.map(file=>{
+                imagepath.push(`${basepath}${file.filename}`);
+            })
+        } 
+        const {name}=req.body    
+       const prod= new Product({
+            name,
+            price:req.body.price,
+            image:imagepath,
+            slug:slugify(name)
+        })
+      const data= await prod.save();
+      return res.status(200).json({
+        success:true,
+        message:"product added successfully",
+        data:data
+    }) 
+     }catch(error){
+         return res.status(500).json({
+             success:false,
+             message:error
+         })  
+     }
+}
+
+const getProduct=async(req,res)=>{
+    try{
+
+        const allData=await Product.find({},{__v:0})
+        return res.status(200).json({
+            success:true,
+            message:"product fetch Successfully",
+            data:{allData}
+        })
+
+    }catch(error){
+        return res.status(500).json({
+            success:false,
+            error
+        }) 
+    }
+}
+
 module.exports={
     UserController,
     GetUser,
     SingleUser,
     UpdateUser,
-    destroy
+    destroy,
+    createProduct,
+    getProduct
 }

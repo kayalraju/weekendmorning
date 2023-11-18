@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use('/uploads',express.static('uploads'))
 app.use(express.static(path.join(__dirname,'public')))
+app.use('/productimage',express.static(__dirname + '/productimage'))
 
 // const UserRouter=require('./router/userRoute')
 // app.use(UserRouter)
